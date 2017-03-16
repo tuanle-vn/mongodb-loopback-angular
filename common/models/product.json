@@ -1,0 +1,35 @@
+{
+  "name": "product",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "forceId": false,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "categoryId": {
+      "type": "string"
+    },
+    "price": {
+      "type": "number"
+    },
+    "inStock": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "validations": [],
+  "relations": {
+    "user": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,18 @@
+{
+  "db": {
+    "name": "db",
+    "localStorage": "",
+    "file": "",
+    "connector": "memory"
+  },
+  "mongoDb": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "",
+    "database": "mongoDb",
+    "password": "",
+    "name": "mongoDb",
+    "user": "",
+    "connector": "mongodb"
+  }
+}
