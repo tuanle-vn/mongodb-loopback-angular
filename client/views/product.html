@@ -5,8 +5,15 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th colspan="6">
+                <th colspan="3">
                     <span ng-bind="TotalProducts"></span> Products
+                </th>
+                <th style="width: 80px;">
+                    <a ui-sref="product-admin">
+                        <button class="btn btn-primary btn-md" ng-click="onAddButtonClick()">
+                            <span class="glyphicon glyphicon-user">Admin</span>
+                        </button>
+                    </a>
                 </th>
             </tr>
             <tr>
