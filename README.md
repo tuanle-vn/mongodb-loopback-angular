@@ -6,6 +6,11 @@ Brief Summary Notes of the Solution
 
 - [TOC]
 
+# References
+- [Loopback-Angular SDK](http://loopback.io/doc/en/lb3/AngularJS-JavaScript-SDK.html)
+- [Loopback-angular example app](http://loopback.io/doc/en/lb3/Angular-example-app.html)
+- [Auto-generate lAngular $resource services](http://loopback.io/doc/en/lb3/AngularJS-Grunt-plugin.html)
+
 # Development Evironment
 
 ## Step 1: Install Node

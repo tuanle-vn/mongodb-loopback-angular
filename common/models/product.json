@@ -17,6 +17,9 @@
     "price": {
       "type": "number"
     },
+    "description": {
+      "type": "string"
+    },
     "inStock": {
       "type": "boolean",
       "default": false

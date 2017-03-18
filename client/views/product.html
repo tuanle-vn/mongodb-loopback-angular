@@ -1,49 +1,61 @@
-<div ng-controller="productController">
+<div>
     <div class="page-header">
         <h2>Product Management Application <small>Written in M[E]AN Stack</small></h2>
     </div>
 
     <!-- products -->
-    <div class="alert alert-success" ng-show="message.showSuccessMessage">
+    <div class="alert alert-success" ng-show="message.isSuccessMessageShown">
         <strong>Success!</strong> {{message.successMessage}}.
     </div>
 
-    <div class="alert alert-danger" ng-show="message.showDangerMessage">
+    <div class="alert alert-danger" ng-show="message.isDangerMessageShown">
         <strong>Danger!</strong> {{message.dangerMessage}}.
     </div>
-    <table class="table table-striped table-hover" style="width: 100%;">
+
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th colspan="4" style="width: 50%">
+                <th colspan="4">
                     <span ng-bind="TotalProducts"></span> Products
                 </th>
-                <th>
+                <th colspan="2" style="width: 80px;">
                     <button class="btn btn-primary btn-md" ng-click="onAddButtonClick()">
-                            <span class="glyphicon glyphicon-plus">Add</span>
-                        </button>
+                        <span class="glyphicon glyphicon-plus">Add</span>
+                    </button>
                 </th>
                 <!--<th colspan="5" style="text-align: right; width: 50%">
-                        Page <span ng-bind="CurrentPageNumber"></span> of
-                        <span ng-bind="TotalPages"></span>
-                    </th>-->
+                    Page <span ng-bind="CurrentPageNumber"></span> of
+                    <span ng-bind="TotalPages"></span>
+                </th>-->
             </tr>
             <!--<tr>
                     <th ng:repeat="tableHeader in tableHeaders" ng:class="setSortIndicator(tableHeader.label)" ng:click="changeSorting(tableHeader.label)">{{tableHeader.label}}</th>
                 </tr>-->
             <tr>
-                <th ng:repeat="tableHeader in tableHeaders">{{tableHeader.label}}</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>In Stock</th>
+                <th colspan="2"></th>
             </tr>
         </thead>
+
         <tbody>
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="name" type="text" class="form-control" name="name" placeholder="Name" ng-model="Product.name" required focus-me="focusMe">
+                        <input type="text" class="form-control" name="name" placeholder="Name" ng-model="Product.name" required focus-me="focusMe"
+                        />
                     </div>
                 </td>
                 <td>
                     <div class="input-group">
-                        <input id="price" type="number" class="form-control" name="price" placeholder="Price" ng-model="Product.price">
+                        <input type="text" class="form-control" name="description" placeholder="Description" ng-model="Product.description" required/>
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="number" class="form-control" name="price" placeholder="Price" ng-model="Product.price" />
                     </div>
                 </td>
                 <!--<td>
@@ -51,46 +63,46 @@
                         <option value="{{category.categoryId}}">{{category.name}}</option>
                     </select>
                 </td>-->
-                <td>
+                <td style="width: 80;">
                     <div class="input-group">
-                        <input id="instock" type="checkbox" class="form-control" name="inStock" checked ng-model="Product.inStock">
+                        <input type="checkbox" name="inStock" ng-model="Product.inStock" checked/>
                     </div>
                 </td>
-                <td></td>
-                <td>
-                    <button class="btn btn-primary btn-xs" ng-click="add()" ng-show="button.showAddButton">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                    <button class="btn btn-primary btn-xs" ng-click="onSaveButtonClick()" ng-show="button.showSaveButton">
-                            <span class="glyphicon glyphicon-floppy-save"></span>
-                        </button>
+                <td style="width: 20px;"></td>
+                <td style="width: 20px;">
+                    <button class="btn btn-primary btn-xs" ng-click="add()" ng-show="!buttons.isSaveButtonShown">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                    <button class="btn btn-primary btn-xs" ng-click="onSaveButtonClick()" ng-show="buttons.isSaveButtonShown">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>
                 </td>
             </tr>
             <tr ng-repeat="product in Products">
-                <td style="width: 25%; height: 25px">
+                <td style="height: 25px">
                     <a ng-click="ok(product.name)" style="cursor: pointer; text-decoration: underline; color: black">
-                            {{product.name}}
-                        </a>
+                        {{product.name}}
+                    </a>
                 </td>
-
-                <td style="width: 50%; white-space: nowrap">
-                    <div>{{product.price | currency}}</div>
+                <td>{{product.description}}</td>
+                <td style="white-space: nowrap">
+                    {{product.price | currency}}
                 </td>
                 <!--<td>
-                    <div>{{product.category.categoryId}}</div>
+                    {{product.category.categoryId}}
                 </td>-->
-                <td style="width: 25%; text-align:left; white-space: nowrap">
+                <td style="text-align:left; white-space: nowrap">
                     <input type="checkbox" ng-model="product.inStock" disabled/>
                 </td>
                 <td>
                     <button class="btn btn-primary btn-xs" ng-click="onEditButtonClick($index)">
-                            <span class="glyphicon glyphicon-edit"></span>
-                        </button>
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </button>
                 </td>
                 <td>
                     <button class="btn btn-danger btn-xs" ng-click="delete($index)">
-                            <span class="glyphicon glyphicon-trash"></span>
-                        </button>
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
                 </td>
             </tr>
         </tbody>
