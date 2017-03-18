@@ -10,6 +10,7 @@ Brief Summary Notes of the Solution
 - [Loopback-Angular SDK](http://loopback.io/doc/en/lb3/AngularJS-JavaScript-SDK.html)
 - [Loopback-angular example app](http://loopback.io/doc/en/lb3/Angular-example-app.html)
 - [Auto-generate lAngular $resource services](http://loopback.io/doc/en/lb3/AngularJS-Grunt-plugin.html)
+- [Angular UI-Router](https://github.com/angular-ui/ui-router/wiki)
 
 # Development Evironment
 

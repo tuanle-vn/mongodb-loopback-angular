@@ -7,12 +7,28 @@ var app = angular.module('app', [
         '$stateProvider',
         '$urlRouterProvider',
         function ($stateProvider, $urlRouterProvider) {
+            var product = {
+                name: 'product',
+                url: '/product',
+                templateUrl: 'views/product.html',
+                controller: 'productController'
+            };
+            var productAdmin = {
+                name: 'product-admin',
+                url: '/product-admin',
+                templateUrl: 'views/product-admin.html',
+                controller: 'productController'
+            };
+            var testPage = {
+                name: "test",
+                url: '/test-page',
+                // template: 'Hello, this is a test content for Angular UI Route',
+                templateUrl: 'views/test-route.html'
+            };
             $stateProvider
-                .state('product', {
-                    url: '',
-                    templateUrl: 'views/product.html',
-                    controller: 'productController'
-                });
+                .state(product)
+                .state(productAdmin)
+                .state(testPage);
 
             $urlRouterProvider.otherwise('product');
         }
