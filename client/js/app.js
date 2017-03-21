@@ -10,13 +10,13 @@ var app = angular.module('app', [
             var product = {
                 name: 'product',
                 url: '/product',
-                templateUrl: 'views/product.html',
+                templateUrl: 'views/product/product.html',
                 controller: 'productController'
             };
             var productAdmin = {
                 name: 'product-admin',
                 url: '/product-admin',
-                templateUrl: 'views/product-admin.html',
+                templateUrl: 'views/product/product-admin.html',
                 controller: 'productController'
             };
             var testPage = {

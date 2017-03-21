@@ -1,0 +1,180 @@
+<div ng-init="InitController()">
+    <h4>Product Management Page <small>This is a page for admins where they can perform CRUD</small></h4>
+
+    <!-- products -->
+
+    <div class="alert alert-success" ng-show="message.isSuccessMessageShown">
+        <strong>Success!</strong> {{message.successMessage}}.
+    </div>
+
+    <div class="alert alert-danger" ng-show="message.isDangerMessageShown">
+        <strong>Danger!</strong> {{message.dangerMessage}}.
+    </div>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th colspan="4">
+                    <span ng-bind="TotalProducts"></span> Products
+                </th>
+                <th colspan="2" style="width: 80px;">
+                    <!-- Trigger the modal with a button -->
+                    <button class="btn btn-primary btn-md" ng-click="onAddButtonClick()" data-toggle="modal" data-target="#productPopup">
+                        <span class="glyphicon glyphicon-plus">Add</span>
+                    </button>
+                </th>
+                <!--<th colspan="5" style="text-align: right; width: 50%">
+                    Page <span ng-bind="CurrentPageNumber"></span> of
+                    <span ng-bind="TotalPages"></span>
+                </th>-->
+            </tr>
+            <!--<tr>
+                    <th ng:repeat="tableHeader in tableHeaders" ng:class="setSortIndicator(tableHeader.label)" ng:click="changeSorting(tableHeader.label)">{{tableHeader.label}}</th>
+                </tr>-->
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>In Stock</th>
+                <th colspan="2"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="name" placeholder="Name" ng-model="filters.name" required />
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="description" placeholder="Description" ng-model="filters.description" required/>
+                    </div>
+                </td>
+                <td>
+                    <div class="input-group">
+                        <input type="number" class="form-control" name="price" placeholder="Price" ng-model="ffilters.price" />
+                    </div>
+                </td>
+                <!--<td>
+                    <select class="form-control" name="category" ng-repeat="category in Categories">
+                        <option value="{{category.categoryId}}">{{category.name}}</option>
+                    </select>
+                </td>-->
+                <td style="width: 80;">
+                    <div class="input-group">
+                        <input type="checkbox" name="inStock" ng-model="filters.inStock" checked/>
+                    </div>
+                </td>
+                <td style="width: 20px;"></td>
+                <td style="width: 20px;">
+                    <!--<button class="btn btn-primary btn-xs" ng-click="add()" ng-show="!buttons.isSaveButtonShown">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                    <button class="btn btn-primary btn-xs" ng-click="onSaveButtonClick()" ng-show="buttons.isSaveButtonShown">
+                        <span class="glyphicon glyphicon-floppy-save"></span>
+                    </button>-->
+                </td>
+            </tr>
+            <tr ng-repeat="product in Products">
+                <td style="height: 25px">
+                    <a ng-click="ok(product.name)" style="cursor: pointer; text-decoration: underline; color: black">
+                        {{product.name}}
+                    </a>
+                </td>
+                <td>{{product.description}}</td>
+                <td style="white-space: nowrap">
+                    {{product.price | currency}}
+                </td>
+                <!--<td>
+                    {{product.category.categoryId}}
+                </td>-->
+                <td style="text-align:left; white-space: nowrap">
+                    <input type="checkbox" ng-model="product.inStock" disabled/>
+                </td>
+                <td>
+                    <button class="btn btn-primary btn-xs" ng-click="onEditButtonClick($index)" data-toggle="modal" data-target="#myModal">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-xs" ng-click="delete($index)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!--TODO: fix pagination -->
+    <pagination boundary-links="true" total-items="TotalProducts" items-per-page="PageSize" ng-change="pageChanged()" ng-model="CurrentPageNumber"
+        class="pagination-lg" previous-text="Prev" next-text="Next" first-text="First" last-text="Last"></pagination>
+    <!-- end products -->
+
+    <!-- Modal -->
+    <div id="productPopup" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="form.onFormCancel()" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{form.values.name || form.title}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-success" ng-show="form.message.isSuccessMessageShown">
+                        <strong>Success!</strong> {{form.message.successMessage}}.
+                    </div>
+
+                    <div class="alert alert-danger" ng-show="form.message.isDangerMessageShown">
+                        <strong>Danger!</strong> {{form.message.dangerMessage}}.
+                    </div>
+                    <!--<h2>Horizontal form</h2>-->
+                    <form class="form-horizontal" name="productPopupForm">
+                        <!-- Product name-->
+                        <div class="form-group" ng-class="{ 'has-error' : productPopupForm.name.$invalid && !productPopupForm.name.$pristine }">
+                            <label class="control-label col-sm-2" for="email">Name:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="name" placeholder="Name" ng-model="form.values.name" required focus-me="form.focused"
+                                    ng-minlength="3" required/>
+                                <p ng-show="productPopupForm.name.$error.minlength" class="help-block">Name is too short.</p>
+                                <p ng-show="productPopupForm.name.$error.required" class="help-block">Name is required.</p>
+                            </div>
+                        </div>
+
+                        <!-- Product description -->
+                        <div class="form-group">
+                            <label class="control-label col-sm-2" for="email">Description:</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="5" style="resize: vertical" name="description" placeholder="Description" ng-model="form.values.description"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Product price -->
+                        <div class="form-group" ng-class="{ 'has-error' : productPopupForm.price.$invalid && !productPopupForm.price.$pristine }">
+                            <label class="control-label col-sm-2" for="pwd">Price:</label>
+                            <div class="col-sm-10">
+                                <input type="number" min="0.1" class="form-control" name="price" placeholder="Price" ng-model="form.values.price" />
+                                <p ng-show="productPopupForm.price.$invalid && !productPopupForm.price.$pristine" class="help-block">Input is not valid.</p>
+                            </div>
+                        </div>
+
+                        <!-- In stock?-->
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label><input type="checkbox" name="inStock" ng-model="form.values.inStock" checked/> In stock</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-default" ng-click="form.submitForm(productPopupForm, productPopupForm.$valid)">Submit</button>
+                    <button type="button" class="btn btn-default" ng-click="form.onFormCancel()" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

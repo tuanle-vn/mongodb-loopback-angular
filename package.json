@@ -1,5 +1,5 @@
 {
-  "name": "Carpool",
+  "name": "mongodb-loopback-angular",
   "version": "1.0.0",
   "main": "server/server.js",
   "scripts": {
@@ -28,5 +28,5 @@
     "url": ""
   },
   "license": "UNLICENSED",
-  "description": "Carpool"
+  "description": "an application written in MEAN stack"
 }
