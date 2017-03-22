@@ -1,7 +1,14 @@
 Brief Summary Notes of the Solution
 ===
-**Remember**: *Follow these instruction `step by step`.*
-***Teachnologies using: `MEAN stack.`***
+
+- **Teachnologies using**: *`MEAN stack.`* ([wiki](https://en.wikipedia.org/wiki/MEAN_(software_bundle)))
+- **Development environment**: *`Linux`*
+- **IDE**:
+ 	- [Visual Studio Code](https://code.visualstudio.com/)
+ 	- [JetBrain's WebStorm](https://www.jetbrains.com/webstorm/)
+- **Tools**:
+	- [Github](https://github.com/)
+
 #### Table of Content
 
 - [TOC]
@@ -11,6 +18,7 @@ Brief Summary Notes of the Solution
 - [Loopback-angular example app](http://loopback.io/doc/en/lb3/Angular-example-app.html)
 - [Auto-generate lAngular $resource services](http://loopback.io/doc/en/lb3/AngularJS-Grunt-plugin.html)
 - [Angular UI-Router](https://github.com/angular-ui/ui-router/wiki)
+- [Angular APIs](https://docs.angularjs.org/api/)
 
 # Development Evironment
 
