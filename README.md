@@ -16,6 +16,7 @@ Brief Summary Notes of the Solution
 # References
 - [Loopback docs](http://loopback.io/doc/en/lb3/)
 - [Loopback APIs](http://apidocs.strongloop.com/)
+- [Angular docs](https://docs.angularjs.org/tutorial)
 - [Loopback-Angular SDK](http://loopback.io/doc/en/lb3/AngularJS-JavaScript-SDK.html)
 - [Loopback-angular example app](http://loopback.io/doc/en/lb3/Angular-example-app.html)
 - [Auto-generate lAngular $resource services](http://loopback.io/doc/en/lb3/AngularJS-Grunt-plugin.html)
